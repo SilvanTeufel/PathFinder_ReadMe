@@ -2,6 +2,37 @@
 Documentation for a Unreal Engine Plugin
 #  AHUDBase
 
+The code snippet provided is written in C++ and utilizes the Unreal Engine. It appears to be a custom implementation of a Heads-Up Display (HUD) that allows the user to select friendly units by drawing a rectangle with their mouse. The code defines a DrawHUD() function for the AHUDBase class, which is responsible for rendering the HUD.
+
+The DrawHUD() function performs the following steps:
+
+1. Checks if bSelectFriendly is true.
+2. Iterates over all friendly units in the FriendlyUnits array and calls DeselectAllUnits() on each one.
+3. Empties the SelectedUnits array.
+4. Gets the current mouse position and stores it in CurrentPoint.
+5. If the difference between the current mouse position and the initial mouse position (InitialPoint) is greater than or equal to 2, the function draws a rectangle using the DrawRect() function.
+6. Calculates the center points and coordinates of the selection rectangle.
+7. Draws the selection rectangle using the DrawRect() function.
+8. Calls the GetActorsInSelectionRectangle() function to get an array of all actors (in this case, friendly units) that are within the selection rectangle.
+9. Calls the SelectUnit() function on each actor in the array.
+
+
+The following is a list of all the methods used in the code snippet, along with a brief description of each method:
+
+DrawHUD(): A function that is called by the engine to draw the HUD.
+bSelectFriendly: A boolean variable that is used to determine whether the user is selecting friendly units.
+FriendlyUnits: An array of AUnitBase pointers that stores all friendly units.
+DeselectAllUnits(): A function that is called on each friendly unit in FriendlyUnits to deselect it.
+SelectedUnits: An array of AUnitBase pointers that stores all currently selected units.
+GetMousePos2D(): A function that returns the current position of the mouse as a FVector2D object.
+InitialPoint: A FVector2D object that stores the position of the mouse when the user first started drawing the selection rectangle.
+DrawRect(): A function that is used to draw rectangles on the screen.
+LengthLineA and LengthLineB: Float variables that store the lengths of the two lines that make up the selection rectangle.
+LineCenterPointA and LineCenterPointB: FVector2D objects that store the center points of the two lines that make up the selection rectangle.
+InitialSelectionPoint and CurrentSelectionPoint: FVector2D objects that store the coordinates of the selection rectangle.
+GetActorsInSelectionRectangle(): A function that is called to get an array of all actors that are within the selection rectangle.
+SelectUnit(): A function that is called on each actor in the GetActorsInSelectionRectangle() array to select it.
+
 #  APathProviderHUD
 
 ```cpp
