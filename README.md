@@ -8,9 +8,6 @@ Die APathProviderHUD ist eine Blueprint-Klasse, die von der Klasse AHUD erbt. Es
 ```cpp
 void APathProviderHUD::BeginPlay()
 ```
-```cpp
-void APathProviderHUD::BeginPlay()
-```
 This is a method that overrides the BeginPlay method of the AActor class. It is called when the actor is first spawned into the game world. In this implementation, the method gets all the actors of the AUnitBase class in the game world and populates arrays AllUnits, FriendlyUnits, and EnemyUnitBases with the results. It also gets all the actors of the ANoPathFindingArea class in the game world and populates the NoPathFindingAreas array with the results.
 
 ```cpp
