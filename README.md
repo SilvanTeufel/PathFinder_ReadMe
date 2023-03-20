@@ -8,32 +8,38 @@ Die APathProviderHUD ist eine Blueprint-Klasse, die von der Klasse AHUD erbt. Es
 ```cpp
 void APathProviderHUD::BeginPlay()
 ```
-Die Methode BeginPlay() wird beim Starten der Blueprint-Instanz aufgerufen und ist Teil des Lebenszyklus von Actor-Klassen. Sie ruft die Superklasse AHUD::BeginPlay() auf und initialisiert Arrays mit Einheiten, NoPathFindingAreas und erstellt Raster und Dijkstra-Matrizen.
+```cpp
+void APathProviderHUD::BeginPlay()
+```
+This is a method that overrides the BeginPlay method of the AActor class. It is called when the actor is first spawned into the game world. In this implementation, the method gets all the actors of the AUnitBase class in the game world and populates arrays AllUnits, FriendlyUnits, and EnemyUnitBases with the results. It also gets all the actors of the ANoPathFindingArea class in the game world and populates the NoPathFindingAreas array with the results.
 
 ```cpp
 bool APathProviderHUD::IsLocationInNoPathFindingAreas(FVector Location)
 ```
-Die Methode IsLocationInNoPathFindingAreas() gibt zurück, ob sich die übergebene Position in einem Bereich ohne Pfadfindung befindet.
+This is a method that takes a FVector as an argument and returns a bool. It checks if the given location is inside any of the ANoPathFindingArea actors previously added to the NoPathFindingAreas array. If it is, it returns true, otherwise it returns false.
 
 ```cpp
 void APathProviderHUD::CreateGridsfromDataTable()
 ```
-Die Methode CreateGridsfromDataTable() erstellt ein Raster aus den Daten, die in der Raster-Datentabelle enthalten sind. Es werden Rastermatrizen erzeugt und in einem Array gespeichert.
+This is a method that populates the PathMatrixes array with FPathMatrix structures created from data in a GridDataTable. The GridDataTable must have been previously set.
 
 ```cpp
 void APathProviderHUD::CreateGridAndDijkstra()
 ```
-Die Methode CreateGridAndDijkstra() ruft CreateGridsfromDataTable() auf und erstellt Dijkstra-Matrizen aus den erstellten Rastermatrizen und den gefundenen Zentrumspunkten.
+This method populates the G_DijkstraPMatrixes array with FDijkstraMatrix structures created by running the Dijkstra algorithm on each of the PathMatrixes. It also associates each FDijkstraMatrix with a ADijkstraCenter actor in the game world. Both the PathMatrixes array and the ADijkstraCenter actors array must have been previously populated.
 
 ```cpp
 void APathProviderHUD::Tick(float DeltaSeconds)
 ```
-Die Methode Tick() wird jeden Frame aufgerufen und ist Teil des Lebenszyklus von Actor-Klassen. Sie ruft MoveUnitsThroughWayPoints() auf, um freundliche Einheiten durch Wegpunkte zu bewegen. Wenn DisablePathFindingOnEnemy falsch ist, ruft sie auch PatrolUnitsThroughWayPoints() auf, um feindliche Einheiten durch Wegpunkte zu bewegen. Schließlich ruft es SetNextDijkstra() auf, um den nächsten Dijkstra für feindliche Einheiten zu setzen.
+This method overrides the Tick method of the AActor class. It is called every frame by the game engine. In this implementation, it updates a timer and when it reaches a certain value, it calls the CreateGridAndDijkstra method to populate the G_DijkstraPMatrixes array. It also calls other methods to move and patrol the friendly and enemy units through waypoints.
 
 ```cpp
-void APathProviderHUD::SetNextDijkstra(TArray <AUnitBase*> Units, float DeltaSeconds)
+void APathProviderHUD::SetNextDijkstra(TArray<AUnitBase*> Units, float DeltaSeconds)
 ```
-Die Methode SetNextDijkstra() sucht nach dem nächsten Dijkstra-Pfad für jede übergebene Einheit und weist den Einheiten den entsprechenden Dijkstra zu.
+This method updates the Next_DijkstraPMatrixes field of each of the AUnitBase actors in the given Units array. The Next_DijkstraPMatrixes field is set to the FDijkstraMatrix in the G_DijkstraPMatrixes array that is closest to the AUnitBase actor in terms of Euclidean distance. The method does this by running a search of the G_DijkstraPMatrixes array for the closest one, and then updating the Next_DijkstraPMatrixes field of the AUnitBase actor accordingly. The method is called every SetNextDijkstraPauseTime seconds, as specified by the class member variable.
+
+Note that the code contains additional helper methods such as CreatePathMatrix and Dijkstra that are not shown in the provided code snippet.
+
 
 Verwendete Bibliotheken
 Der Code verwendet folgende Unreal Engine Bibliotheken:
