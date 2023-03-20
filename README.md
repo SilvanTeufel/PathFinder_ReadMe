@@ -17,21 +17,35 @@ The DrawHUD() function performs the following steps:
 9. Calls the SelectUnit() function on each actor in the array.
 
 
-The following is a list of all the methods used in the code snippet, along with a brief description of each method:
+The AHUDBase class is derived from the AHUD class in Unreal Engine. It is responsible for the graphical user interface and input handling for the player. The code provided includes a DrawHUD() function that is called every frame to update the HUD.
 
-DrawHUD(): A function that is called by the engine to draw the HUD.
-bSelectFriendly: A boolean variable that is used to determine whether the user is selecting friendly units.
-FriendlyUnits: An array of AUnitBase pointers that stores all friendly units.
-DeselectAllUnits(): A function that is called on each friendly unit in FriendlyUnits to deselect it.
-SelectedUnits: An array of AUnitBase pointers that stores all currently selected units.
-GetMousePos2D(): A function that returns the current position of the mouse as a FVector2D object.
-InitialPoint: A FVector2D object that stores the position of the mouse when the user first started drawing the selection rectangle.
-DrawRect(): A function that is used to draw rectangles on the screen.
-LengthLineA and LengthLineB: Float variables that store the lengths of the two lines that make up the selection rectangle.
-LineCenterPointA and LineCenterPointB: FVector2D objects that store the center points of the two lines that make up the selection rectangle.
-InitialSelectionPoint and CurrentSelectionPoint: FVector2D objects that store the coordinates of the selection rectangle.
-GetActorsInSelectionRectangle(): A function that is called to get an array of all actors that are within the selection rectangle.
-SelectUnit(): A function that is called on each actor in the GetActorsInSelectionRectangle() array to select it.
+The class has the following methods:
+
+AHUDBase::DrawHUD(): This method is called every frame to draw the HUD on the screen. It includes a selection rectangle that is drawn on the screen when the player selects friendly units.
+```cpp
+AHUDBase::DeselectAllUnits()
+```
+This method deselects all the selected units.
+
+```cpp
+AHUDBase::GetMousePos2D()
+```
+This method gets the current mouse position in 2D space.
+
+```cpp
+AHUDBase::SelectAllUnits()
+```
+This method selects all the units.
+
+```cpp
+AHUDBase::SetUnitSelected(AUnitBase* Unit)
+```
+This method sets a unit selected. It takes a unit as input and adds it to the selected units array.
+
+```cpp
+AHUDBase::Tick()
+```
+This method is called every frame to update the state of the game. It is used to check for input and handle the selection of units.
 
 #  APathProviderHUD
 
