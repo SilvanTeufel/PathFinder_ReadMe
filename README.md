@@ -1,9 +1,8 @@
 # PathFinder_ReadMe
 Documentation for a Unreal Engine Plugin
+#  AHUDBase
 
-
-Code-Dokumentation: APathProviderHUD
-Die APathProviderHUD ist eine Blueprint-Klasse, die von der Klasse AHUD erbt. Es ist eine Basisklasse für HUD-Elemente, die Pfadfindungslogik benötigen. Der folgende Code dokumentiert die Methoden der Klasse.
+#  APathProviderHUD
 
 ```cpp
 void APathProviderHUD::BeginPlay()
