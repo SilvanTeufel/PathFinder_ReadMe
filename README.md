@@ -10,29 +10,29 @@ void APathProviderHUD::BeginPlay()
 ```
 Die Methode BeginPlay() wird beim Starten der Blueprint-Instanz aufgerufen und ist Teil des Lebenszyklus von Actor-Klassen. Sie ruft die Superklasse AHUD::BeginPlay() auf und initialisiert Arrays mit Einheiten, NoPathFindingAreas und erstellt Raster und Dijkstra-Matrizen.
 
-cpp
-Copy code
+```cpp
 bool APathProviderHUD::IsLocationInNoPathFindingAreas(FVector Location)
+```
 Die Methode IsLocationInNoPathFindingAreas() gibt zurück, ob sich die übergebene Position in einem Bereich ohne Pfadfindung befindet.
 
-cpp
-Copy code
+```cpp
 void APathProviderHUD::CreateGridsfromDataTable()
+```
 Die Methode CreateGridsfromDataTable() erstellt ein Raster aus den Daten, die in der Raster-Datentabelle enthalten sind. Es werden Rastermatrizen erzeugt und in einem Array gespeichert.
 
-cpp
-Copy code
+```cpp
 void APathProviderHUD::CreateGridAndDijkstra()
+```
 Die Methode CreateGridAndDijkstra() ruft CreateGridsfromDataTable() auf und erstellt Dijkstra-Matrizen aus den erstellten Rastermatrizen und den gefundenen Zentrumspunkten.
 
-cpp
-Copy code
+```cpp
 void APathProviderHUD::Tick(float DeltaSeconds)
+```
 Die Methode Tick() wird jeden Frame aufgerufen und ist Teil des Lebenszyklus von Actor-Klassen. Sie ruft MoveUnitsThroughWayPoints() auf, um freundliche Einheiten durch Wegpunkte zu bewegen. Wenn DisablePathFindingOnEnemy falsch ist, ruft sie auch PatrolUnitsThroughWayPoints() auf, um feindliche Einheiten durch Wegpunkte zu bewegen. Schließlich ruft es SetNextDijkstra() auf, um den nächsten Dijkstra für feindliche Einheiten zu setzen.
 
-cpp
-Copy code
+```cpp
 void APathProviderHUD::SetNextDijkstra(TArray <AUnitBase*> Units, float DeltaSeconds)
+```
 Die Methode SetNextDijkstra() sucht nach dem nächsten Dijkstra-Pfad für jede übergebene Einheit und weist den Einheiten den entsprechenden Dijkstra zu.
 
 Verwendete Bibliotheken
