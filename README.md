@@ -5,8 +5,7 @@ Documentation for a Unreal Engine Plugin
 Code-Dokumentation: APathProviderHUD
 Die APathProviderHUD ist eine Blueprint-Klasse, die von der Klasse AHUD erbt. Es ist eine Basisklasse für HUD-Elemente, die Pfadfindungslogik benötigen. Der folgende Code dokumentiert die Methoden der Klasse.
 
-```ruby
-require 'redcarpet'
+```cpp
 void APathProviderHUD::BeginPlay()
 ```
 Die Methode BeginPlay() wird beim Starten der Blueprint-Instanz aufgerufen und ist Teil des Lebenszyklus von Actor-Klassen. Sie ruft die Superklasse AHUD::BeginPlay() auf und initialisiert Arrays mit Einheiten, NoPathFindingAreas und erstellt Raster und Dijkstra-Matrizen.
