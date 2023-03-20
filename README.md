@@ -56,7 +56,7 @@ Der Code verwendet folgende Unreal Engine Bibliotheken:
 
 
 
-Sure, here's a list of the properties (variables) in the `APathProviderHUD` class and what they are used for:
+Here's a list of the properties (variables) in the `APathProviderHUD` class and what they are used for:
 
 -   `TraceChannelProperty`: Used to specify the collision channel for the trace that the class performs.
 -   `QueryParams`: Used to hold the parameters for a collision query.
